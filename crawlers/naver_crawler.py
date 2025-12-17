@@ -14,7 +14,7 @@ class NaverCrawler(NewsCrawler):
     """
 
     # [유지보수 포인트] 클래스 이름이 바뀌면 여기만 수정하세요!
-    NEWS_TITLE_CLASS = "_228e3bd1"
+    NEWS_TITLE_CLASS = "fender-ui_228e3bd1"
 
     HEADERS = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
