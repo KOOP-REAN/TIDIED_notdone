@@ -14,10 +14,8 @@ class Article:
         self._url = url
         self._source = source             #"네버이" 또는 "구글"
         self._content: Optional[str] = None
-        self._summary: Optional[str] = None
 
-
-    # -------------- 캡슐화 --------------
+    # -------------- 캡슐화(Getter) --------------
     @property
     def title(self) -> str:
         return self._title
@@ -34,20 +32,17 @@ class Article:
     def content(self) -> Optional[str]:
         return self._content
     
-    @property
-    def summary(self) -> Optional[str]:
-        return self._summary
     
-    # -------------- setter --------------
+    # -------------- 캡슐화(Setter) --------------
     @content.setter
     def content(self, text: str | None) -> None: 
         # Python 3.10+ 유니온 타입 사용해야 함,, 이거 때문에 고생 많이 함
-        # Optional[str] 대신 str | None과 .strip() 사용..
-        self._content = text.strip() if text else None
-    
-    @summary.setter
-    def summary(self, text: str | None) -> None: 
-        self._summary = text.strip() if text else None
+        # Optional[str] 대신 str | None과 .strip() 사용
+        if text:
+            self._content = text.strip() 
+        else:
+            self._content = None
+
     
     # -------------- 가독성 높이기 --------------
     def __str__(self) -> str:

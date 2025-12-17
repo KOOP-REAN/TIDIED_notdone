@@ -28,6 +28,16 @@ def run_crawler():
         for i, article in enumerate(articles):
             print(f"{i+1:02d}. [{article.source}] {article.title}")
             print(f"    🔗 링크: {article.url}")
+
+            #[부제목 테스트 코드]
+            content = crawler.get_content(article.url)
+
+            if content:
+                print(f"    📝 부제목: {content[:60]}...") # 너무 기니까 30자만 출력
+            else:
+                print("    📝 부제목: (없음)")
+            
+            print() # 줄바꿈
         print("-" * 60)
     else:
         print("\n❌ 검색 결과가 없습니다. '진단 모드'를 실행하여 클래스명을 확인해보세요!")
