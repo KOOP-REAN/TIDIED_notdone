@@ -1,0 +1,15 @@
+# --- 비밀번호 및 보안 관련 ---
+.env
+config.js
+secrets.json
+*.key
+
+# --- 용량이 너무 커서 굳이 올릴 필요 없는 것들 ---
+node_modules/
+venv/
+.Python
+*.log
+
+# --- 운영체제 시스템 파일  ---
+.DS_Store
+Thumbs.db
