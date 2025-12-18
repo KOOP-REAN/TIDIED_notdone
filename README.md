@@ -16,24 +16,25 @@ TiDIED/
 ├─ crawlers/
 │   ├─ __init__.py              
 │   ├─ base_crawler.py          ← 추상 클래스
-│   ├─ naver_crawler.py          ← (기사 링크/제목 수집만 성공)
-│   └─ google_crawler.py          ← (만들어야 함)
+│   ├─ naver_crawler.py          
 ├─ models/
 │   ├─ __init__.py
-│   └─ article.py          ← (DTO, 캡슐화 적용)
+│   └─ article.py               ← (DTO, 캡슐화 적용)
 ├─ services/
 │   ├─ __init__.py
-│   └─ bookmark_manager.py          ← (만들어야 함)
+│   └─ bookmark_manager.py          
 ├─ core/
 │   ├─ __init__.py
-│   └─ tidied.py                ← 메인 클래스 (만들어야 함)
+│   └─ TIDIED.py                ← 메인 클래스
 ├─ gui/
 │   └─ (나중에 만들어야 함)
 ├─ data/
 │   └─ bookmarks.json           ← 자동 생성될 예정
 ├─ utils/
 │   └─ __init__.py
-│   └─ naver_class_finder.py          ← 유지보수(만들었음)
+│   └─ naver_class_finder.py    ← 유지보수(만들었음)
 ├─ main.py                      ← 실행용
-└─ README.md 
+├─ main.py                      ← 웹페이지 실행
+├─ .gitignore                   ← GitHub 업로드 이상 방지.
+└─ README.md                    ← GitHub 업로드 시 활용.
                  

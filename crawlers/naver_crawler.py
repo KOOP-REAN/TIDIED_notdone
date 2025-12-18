@@ -116,12 +116,35 @@ class NaverCrawler(NewsCrawler):
 
             soup = BeautifulSoup(response.text, "html.parser")
 
-            candidates = ["media_end_summary", "sub_title", "sh_sub_head", "media_end_head_headline"]
+            # ---------------------------------------------------------
+            # [Plan A] 우리가 아는 '부제목 클래스' 이름으로 찾기
+            # ---------------------------------------------------------
+            # [수정됨] 범인(media_end_head_headline)을 삭제했습니다!
+            candidates = ["media_end_summary", "sub_title", "sh_sub_head"]
 
             for class_name in candidates:
                 element = soup.find(class_=class_name)
                 if element and element.get_text(strip=True):
                     return element.get_text(strip=True)
+
+            # ---------------------------------------------------------
+            # [Plan B] 클래스가 없을 때: 본문(#dic_area) 안의 첫 번째 굵은 글씨(strong, b) 찾기
+            # ---------------------------------------------------------
+            article_body = soup.select_one("#dic_area")
+            
+            # 본문 영역을 못 찾으면 다른 ID(articleBodyContents)일 수도 있음 (PC 버전 대응)
+            if not article_body:
+                article_body = soup.select_one("#articleBodyContents")
+
+            if article_body:
+                # 1. 굵은 글씨 태그가 있는지 확인 (태그 이름만 넣기!)
+                first_bold = article_body.find(["strong", "b"])
+                
+                if first_bold and first_bold.get_text(strip=True):
+                    text = first_bold.get_text(strip=True)
+                    # 너무 길지 않으면(200자 미만) 부제목으로 인정
+                    if len(text) < 200:
+                        return text
 
             return None
 
