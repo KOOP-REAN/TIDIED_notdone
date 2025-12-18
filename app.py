@@ -1,5 +1,5 @@
 # app.py
-
+# 웹피이지 제작은 온전히 Gemini를 통해서만 만들었습니다.
 import streamlit as st
 import time
 from crawlers.naver_crawler import NaverCrawler

@@ -4,19 +4,21 @@ from typing import Optional
 
 class Article:
     """
-    하나의 뉴스 기사를 나타내는 클래스.
-    [WEEK05 클래스/객체]
-    [WEEK08 캡슐화]
-    에서 배운 개념 적용됨.
+    [WEEK05 클래스와 객체] 
+    뉴스 기사 데이터를 구조화하여 관리하기 위한 클래스입니다!
+    기사 제목, 링크, 언론사, 본문 요약 내용을 하나의 객체로 묶어서 다룹니다.
     """
 
     def __init__(self, title: str, url: str, source: str):
-        self._title = title         #private 변수
+        # [WEEK08 캡슐화 & 정보 은닉]
+        # 변수명 앞에 언더바(_)를 붙여 외부에서 함부로 수정하지 못하도록 보호합니다.
+        self._title = title         
         self._url = url
-        self._source = source             #"네버이" 또는 "구글"
-        self._content: Optional[str] = None
+        self._source = source             
+        self._content: Optional[str] = None # 초기값은 비어있음 (None)
 
-    # -------------- 캡슐화(Getter) --------------
+    # -------------- [WEEK08] 캡슐화: Getter 메서드 --------------
+    # 외부에서 값을 읽을 수는 있지만(Read-Only), 직접 수정할 수는 없게 만듭니다.
     @property
     def title(self) -> str:
         return self._title
@@ -34,7 +36,8 @@ class Article:
         return self._content
     
     
-    # -------------- 캡슐화(Setter) --------------
+    # -------------- [WEEK08] 캡슐화: Setter 메서드 --------------
+    # 값을 수정할 때 유효성 검사를 거치도록 코드를 추가했습니다.
     @content.setter
     def content(self, text: str | None) -> None: 
         # Python 3.10+ 유니온 타입 사용해야 함,, 이거 때문에 고생 많이 함
@@ -44,11 +47,12 @@ class Article:
         else:
             self._content = None
 
-    # -------------- JSON 직렬화 (수정됨) --------------
+
+  
     def to_dict(self) -> dict:
         """
-        [수정] 요청하신 대로 한글 키(Key)와 순서를 적용했습니다.
-        순서: 기사 제목 -> 부제목 -> 출처(링크) -> 사이트
+        객체 데이터를 JSON 파일로 저장하기 위해 딕셔너리 형태로 변환합니다.
+        사용자가 보기 편하도록 한글 키(Key)를 사용했습니다.
         """
         return {
             "기사 제목": self._title,
@@ -58,7 +62,8 @@ class Article:
         }
 
 
-    # -------------- 가독성 높이기 --------------
+    # -------------- [WEEK05] 가독성 높이기 --------------
+    # 객체를 print()로 출력했을 때 보기 좋은 문자열이 나오도록 오버라이딩했습니다.
     def __str__(self) -> str:
         return f"[{self._source}] {self._title}"
     
