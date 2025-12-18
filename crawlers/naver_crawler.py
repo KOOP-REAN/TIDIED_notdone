@@ -1,3 +1,5 @@
+# crawlers/naver_crawler.py
+
 import requests
 from bs4 import BeautifulSoup
 import time 
